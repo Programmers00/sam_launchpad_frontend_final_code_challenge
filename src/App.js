@@ -1,8 +1,22 @@
+// Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Layouts => wrapper for pages
+import Layout from "./layouts";
+// Albums page
+import Albums from "./pages/Albums";
+// Photos page
+import Photos from "./pages/Photos";
+
 function App() {
   return (
-    <div className="text-3xl font-bold underline">
-      sam_launchpad_frontend_final_code_challenge
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/*" element={<Layout />}>
+          <Route exact index element={<Albums />} />
+          <Route exact path="photos" element={<Photos />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 export default App;
