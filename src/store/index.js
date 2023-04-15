@@ -11,5 +11,5 @@ const rootReducer = combineReducers({});
 // middlewares => thunk, logger
 const middlewares = [thunk, logger];
 // store => include all setting
-const store = createStore(rootReducer, applyMiddleware(middlewares));
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 export default store;
