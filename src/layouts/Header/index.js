@@ -17,7 +17,10 @@ const Header = () => {
             NOhBUG
           </span>
         </a>
-        <div class="flex md:order-2">
+        <div class="flex md:order-2 gap-x-2">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Create
+          </button>
           {/* small search button */}
           <button
             onClick={() => setIsSearchbarHidden((prev) => !prev)} // hidden, show navbar
