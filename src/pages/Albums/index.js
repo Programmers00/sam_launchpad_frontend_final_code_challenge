@@ -1,6 +1,7 @@
 // components
 import AlbumCard from "../../components/AlbumCard";
 import Modal from "../../components/Modal";
+import PopupModal from "../../components/PopupModal";
 /** Albums page */
 const Albums = () => {
   const albums = [
@@ -111,6 +112,7 @@ const Albums = () => {
         {albums.map((album) => AlbumCard(album))}
       </div>
       <Modal />
+      <PopupModal />
     </>
   );
 };

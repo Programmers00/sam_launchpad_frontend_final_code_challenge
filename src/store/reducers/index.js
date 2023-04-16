@@ -1,2 +1,5 @@
+// modal
 import modal from "./modal";
-export { modal };
+// popupModal
+import popupModal from "./popupModal";
+export { modal, popupModal };
