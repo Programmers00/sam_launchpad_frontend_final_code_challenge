@@ -6,6 +6,8 @@ import { setIsShowModalFalse } from "../../store/actions";
 const Modal = () => {
   // redux useSelector => isShowModal
   const isShowModal = useSelector((state) => state.modal.isShowModal);
+  // redux useSelector => isCreateButton
+  const isCreateButton = useSelector((state) => state.modal.isCreateButton);
   // redux useDispatch => setIsSHowModalFalse
   const dispatch = useDispatch();
   return (
@@ -59,7 +61,7 @@ const Modal = () => {
                   type="button"
                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Create
+                  {isCreateButton === true ? "Create" : "Edit"}
                 </button>
                 {/* Cancel button */}
                 <button

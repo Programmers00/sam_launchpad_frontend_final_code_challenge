@@ -6,6 +6,7 @@ import {
 // initial state
 const initialState = {
   isShowModal: false, // default: hidden
+  isCreateButton: true, // default: create button
 };
 /** modal reducer */
 const modal = (state = initialState, action) => {
@@ -15,6 +16,7 @@ const modal = (state = initialState, action) => {
       return {
         ...state,
         isShowModal: true,
+        isCreateButton: action.payload ? false : true,
       };
     // hide modal
     case SET_IS_SHOW_MODAL_FALSE:

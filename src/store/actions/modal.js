@@ -4,9 +4,9 @@ import {
   SET_IS_SHOW_MODAL_FALSE,
 } from "../actionTypes";
 /** action : show modal */
-export const setIsShowModalTrue = () => {
+export const setIsShowModalTrue = (album) => {
   return (dispatch) => {
-    dispatch({ type: SET_IS_SHOW_MODAL_TRUE });
+    dispatch({ type: SET_IS_SHOW_MODAL_TRUE, payload: album });
   };
 };
 /** action : hide modal */
