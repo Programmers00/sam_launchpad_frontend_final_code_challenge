@@ -1,6 +1,6 @@
-// component
+// components
 import AlbumCard from "../../components/AlbumCard";
-
+import Modal from "../../components/Modal";
 /** Albums page */
 const Albums = () => {
   const albums = [
@@ -106,9 +106,12 @@ const Albums = () => {
     },
   ];
   return (
-    <div class="w-full flex flex-wrap gap-2 flex p-10 justify-center">
-      {albums.map((album) => AlbumCard(album))}
-    </div>
+    <>
+      <div class="w-full flex flex-wrap gap-2 flex p-10 justify-center">
+        {albums.map((album) => AlbumCard(album))}
+      </div>
+      <Modal />
+    </>
   );
 };
 export default Albums;

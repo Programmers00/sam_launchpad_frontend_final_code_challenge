@@ -1,0 +1,3 @@
+// modal
+export const SET_IS_SHOW_MODAL_TRUE = "SET_IS_SHOW_MODAL_TRUE";
+export const SET_IS_SHOW_MODAL_FALSE = "SET_IS_SHOW_MODAL_FALSE";
