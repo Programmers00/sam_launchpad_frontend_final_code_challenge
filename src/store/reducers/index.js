@@ -4,4 +4,6 @@ import modal from "./modal";
 import popupModal from "./popupModal";
 // albums
 import albums from "./albums";
-export { modal, popupModal, albums };
+// album
+import album from "./album";
+export { modal, popupModal, albums, album };

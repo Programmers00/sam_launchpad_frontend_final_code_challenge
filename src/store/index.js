@@ -5,9 +5,9 @@ import thunk from "redux-thunk";
 // redux-logger
 import logger from "redux-logger";
 // reducers => add all reducers here
-import { modal, popupModal, albums } from "./reducers";
+import { modal, popupModal, albums, album } from "./reducers";
 // combine reducers
-const rootReducer = combineReducers({ modal, popupModal, albums });
+const rootReducer = combineReducers({ modal, popupModal, albums, album });
 // middlewares => thunk, logger
 const middlewares = [thunk, logger];
 // store => include all setting
