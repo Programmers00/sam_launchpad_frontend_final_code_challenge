@@ -1,15 +1,33 @@
 // redux
 import { useSelector, useDispatch } from "react-redux";
 // redux actions
-import { setIsShowModalFalse } from "../../store/actions";
+import { setIsShowModalFalse, createAlbum } from "../../store/actions";
+import {
+  setAlbumParamsTitle,
+  setAlbumParamsUserId,
+} from "../../store/actions/album";
 /** Modal component */
 const Modal = () => {
+  // redux useDispatch
+  const dispatch = useDispatch();
+
   // redux useSelector => isShowModal
   const isShowModal = useSelector((state) => state.modal.isShowModal);
   // redux useSelector => isCreateButton
   const isCreateButton = useSelector((state) => state.modal.isCreateButton);
-  // redux useDispatch => setIsSHowModalFalse
-  const dispatch = useDispatch();
+  // redux useSelector => album params title
+  const title = useSelector((state) => state.album.title);
+  // redux useSelector => album params userId
+  const userId = useSelector((state) => state.album.userId);
+
+  // redux useSelector => params for create or edit album
+  const params = useSelector((state) => state.album);
+
+  // function onSubmit: create albums
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createAlbum(params));
+  };
   return (
     <div
       id="modal"
@@ -22,7 +40,7 @@ const Modal = () => {
       <div class="relative w-full max-w-md max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div class="px-6 py-6 lg:px-8">
-            <form class="space-y-6" action="#">
+            <form class="space-y-6" onSubmit={onSubmit}>
               <div>
                 <label
                   for="title"
@@ -31,12 +49,16 @@ const Modal = () => {
                   Title
                 </label>
                 <input
-                  type="title"
-                  name="title"
                   id="title"
+                  name="title"
+                  type="text"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="title"
                   required
+                  value={title}
+                  onChange={(event) =>
+                    dispatch(setAlbumParamsTitle(event.target.value))
+                  }
                 />
               </div>
               <div>
@@ -47,21 +69,30 @@ const Modal = () => {
                   UserId
                 </label>
                 <input
-                  type="userId"
-                  name="userId"
                   id="userId"
+                  name="userId"
+                  type="number"
                   placeholder="userId"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
+                  value={userId}
+                  onChange={(event) =>
+                    dispatch(setAlbumParamsUserId(event.target.value))
+                  }
                 />
               </div>
               <div class="flex gap-x-1 justify-center">
                 {/* Create button */}
                 <button
-                  type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="submit"
+                  class={`text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-4 focus:outline-none ${
+                    isCreateButton === true
+                      ? "bg-blue-700 hover:bg-blue-800  focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      : "bg-green-700 hover:bg-green-800  focus:ring-green-300  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                  }`}
                 >
-                  {isCreateButton === true ? "Create" : "Edit"}
+                  {/* {isCreateButton === true ? "Create" : "Save"} */}
+                  Save
                 </button>
                 {/* Cancel button */}
                 <button
