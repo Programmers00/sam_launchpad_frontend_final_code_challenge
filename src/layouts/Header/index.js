@@ -5,7 +5,11 @@ import { useState } from "react";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // redux actions
-import { setIsShowModalTrue, setSearchId } from "../../store/actions";
+import {
+  fetchPhotos,
+  setIsShowModalTrue,
+  setSearchId,
+} from "../../store/actions";
 /** Header in layout */
 const Header = () => {
   // handling tailwindcss
@@ -22,7 +26,7 @@ const Header = () => {
     // conditional function
     page === "albums"
       ? dispatch(setSearchId(Number(event.target.value)))
-      : console.log("#setSearchAlbumId");
+      : dispatch(fetchPhotos(Number(event.target.value)));
   };
   return (
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
