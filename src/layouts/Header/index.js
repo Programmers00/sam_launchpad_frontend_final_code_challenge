@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // useState
 import { useState } from "react";
 // redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // redux actions
 import { setIsShowModalTrue, setSearchId } from "../../store/actions";
 /** Header in layout */
@@ -13,6 +13,8 @@ const Header = () => {
   const [isShowNavbar, setIsShowNavbar] = useState(false);
   // dispatch
   const dispatch = useDispatch();
+  // selector => page
+  const page = useSelector((state) => state.page.page);
   // function onSearch
   const onSearch = (event) => {
     if (event.key !== "Enter") return;
@@ -43,7 +45,9 @@ const Header = () => {
             data-collapse-toggle="navbar-search"
             aria-controls="navbar-search"
             aria-expanded="false"
-            class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1"
+            class={` ${
+              page === "photos" && "hidden"
+            } md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1`}
           >
             <svg
               class="w-5 h-5"
@@ -60,7 +64,12 @@ const Header = () => {
             </svg>
             <span class="sr-only">Search</span>
           </button>
-          <div class="relative hidden md:block">
+          {/* search bar */}
+          <div
+            class={` relative hidden ${
+              page === "photos" ? "block" : "md:block"
+            }`}
+          >
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 class="w-5 h-5 text-gray-500"
@@ -119,7 +128,11 @@ const Header = () => {
           id="navbar-search"
         >
           {/* search bar */}
-          <div class="relative mt-3 md:hidden">
+          <div
+            class={`relative mt-3 ${
+              page === "photos" ? "hidden" : "md:hidden"
+            }`}
+          >
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 class="w-5 h-5 text-gray-500"

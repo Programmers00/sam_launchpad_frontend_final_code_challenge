@@ -13,3 +13,6 @@ export const RESET_ALBUM_PARAMS = "RESET_ALBUM_PARAMS";
 export const SET_ALBUM_PARAMS_ID = "SET_ALBUM_PARAMS_ID";
 // search
 export const SET_SEARCH_ID = "SET_SEARCH_ID";
+// page
+export const SET_PAGE_ALBUMS = "SET_PAGE_ALBUMS";
+export const SET_PAGE_PHOTOS = "SET_PAGE_PHOTOS";
