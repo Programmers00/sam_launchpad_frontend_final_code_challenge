@@ -4,6 +4,7 @@ import {
   SET_ALBUM_PARAMS_USER_ID,
   RESET_ALBUM_PARAMS,
   SET_IS_SHOW_MODAL_FALSE,
+  SET_IS_SHOW_POPUP_MODAL_FALSE,
 } from "../actionTypes";
 // request(axios)
 import request from "../../utils/request";
@@ -24,7 +25,7 @@ const createOptions = {
   url: "/albums",
   method: "post",
 };
-// editt options
+// edit options
 const editOptions = {
   url: "/albums",
   method: "put",
@@ -56,6 +57,33 @@ export const createAlbum = (data) => {
         `#${data.id ? "Edit" : "Create"} Album Fail`,
         error.response
       );
+    }
+  };
+};
+
+// delete options
+const deleteOptions = {
+  url: "/albums",
+  method: "delete",
+};
+
+/** action: delete album */
+export const deleteAlbum = (data) => {
+  return async (dispatch) => {
+    // request api
+    try {
+      const response = await request({
+        ...deleteOptions,
+        url: `${deleteOptions.url}/${data.id}`,
+      });
+      if (response.status === 200) {
+        // reset album params
+        dispatch({ type: RESET_ALBUM_PARAMS });
+        // hide popup modal
+        dispatch({ type: SET_IS_SHOW_POPUP_MODAL_FALSE });
+      }
+    } catch (error) {
+      console.error("#Delete Album Fail", error.response);
     }
   };
 };

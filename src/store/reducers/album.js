@@ -25,7 +25,7 @@ const albums = (state = initialState, action) => {
         ...state,
         userId: action.payload,
       };
-    // add album params id
+    // add album params id(edit, delete)
     case SET_ALBUM_PARAMS_ID:
       return {
         ...state,

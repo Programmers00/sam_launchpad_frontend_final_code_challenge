@@ -8,7 +8,7 @@ import {
 // albums
 import { fetchAlbums } from "./albums";
 // album
-import { createAlbum } from "./album";
+import { createAlbum, deleteAlbum } from "./album";
 export {
   setIsShowModalFalse,
   setIsShowModalTrue,
@@ -16,4 +16,5 @@ export {
   setIsShowPopupModalTrue,
   fetchAlbums,
   createAlbum,
+  deleteAlbum,
 };
