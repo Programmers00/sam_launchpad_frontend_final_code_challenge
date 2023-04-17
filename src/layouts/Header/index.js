@@ -33,10 +33,18 @@ const Header = () => {
         <div class="flex md:order-2 gap-x-2">
           <button
             // show modal
-            onClick={() => dispatch(setIsShowModalTrue())}
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+            onClick={() =>
+              page === "albums"
+                ? dispatch(setIsShowModalTrue())
+                : console.log("#reset")
+            }
+            class={`${
+              page === "albums"
+                ? "bg-blue-500 hover:bg-blue-700"
+                : "bg-red-500 hover:bg-red-700"
+            } text-white font-bold py-2 px-4 rounded-lg`}
           >
-            Create
+            {page === "albums" ? "Create" : "Reset"}
           </button>
           {/* small search button */}
           <button
