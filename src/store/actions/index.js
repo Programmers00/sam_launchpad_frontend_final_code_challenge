@@ -13,6 +13,9 @@ import { createAlbum, deleteAlbum } from "./album";
 import { setSearchId } from "./search";
 // page
 import { setPageAlbums, setPagePhotos } from "./page";
+// photos
+import { fetchPhotos } from "./photos";
+
 export {
   setIsShowModalFalse,
   setIsShowModalTrue,
@@ -24,4 +27,5 @@ export {
   setSearchId,
   setPageAlbums,
   setPagePhotos,
+  fetchPhotos,
 };

@@ -10,4 +10,6 @@ import album from "./album";
 import search from "./search";
 // page
 import page from "./page";
-export { modal, popupModal, albums, album, search, page };
+// photos
+import photos from "./photos";
+export { modal, popupModal, albums, album, search, page, photos };
