@@ -8,4 +8,6 @@ import albums from "./albums";
 import album from "./album";
 // search
 import search from "./search";
-export { modal, popupModal, albums, album, search };
+// page
+import page from "./page";
+export { modal, popupModal, albums, album, search, page };
