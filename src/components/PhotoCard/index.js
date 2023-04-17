@@ -12,7 +12,7 @@ const PhotoCard = (album) => {
         </div>
         <div class="flex flex-1 justify-center gap-2">
           <h3>ID</h3>
-          <h3 class="border border-2 border-gray-200 rounded-lg w-10 text-center">
+          <h3 class="border border-2 border-gray-200 rounded-lg w-20 text-center">
             {album.id}
           </h3>
         </div>
