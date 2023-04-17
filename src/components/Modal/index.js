@@ -8,28 +8,26 @@ import {
 } from "../../store/actions/album";
 /** Modal component */
 const Modal = () => {
+  // redux useDispatch
+  const dispatch = useDispatch();
+
   // redux useSelector => isShowModal
   const isShowModal = useSelector((state) => state.modal.isShowModal);
   // redux useSelector => isCreateButton
   const isCreateButton = useSelector((state) => state.modal.isCreateButton);
-  // redux useDispatch => setIsSHowModalFalse
-  const dispatch = useDispatch();
   // redux useSelector => album params title
   const title = useSelector((state) => state.album.title);
   // redux useSelector => album params userId
   const userId = useSelector((state) => state.album.userId);
 
-  // params for createAlbum
-  const params = {
-    title,
-    userId,
-  };
-  // function onSubmit
+  // redux useSelector => params for create or edit album
+  const params = useSelector((state) => state.album);
+
+  // function onSubmit: create albums
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(createAlbum(params));
   };
-
   return (
     <div
       id="modal"
@@ -87,9 +85,14 @@ const Modal = () => {
                 {/* Create button */}
                 <button
                   type="submit"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class={`text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-4 focus:outline-none ${
+                    isCreateButton === true
+                      ? "bg-blue-700 hover:bg-blue-800  focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      : "bg-green-700 hover:bg-green-800  focus:ring-green-300  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                  }`}
                 >
-                  {isCreateButton === true ? "Create" : "Edit"}
+                  {/* {isCreateButton === true ? "Create" : "Save"} */}
+                  Save
                 </button>
                 {/* Cancel button */}
                 <button
