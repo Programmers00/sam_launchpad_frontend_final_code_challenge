@@ -19,7 +19,10 @@ const Header = () => {
   const onSearch = (event) => {
     if (event.key !== "Enter") return;
     event.preventDefault();
-    dispatch(setSearchId(Number(event.target.value)));
+    // conditional function
+    page === "albums"
+      ? dispatch(setSearchId(Number(event.target.value)))
+      : console.log("#setSearchAlbumId");
   };
   return (
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -42,7 +45,7 @@ const Header = () => {
               page === "albums"
                 ? "bg-blue-500 hover:bg-blue-700"
                 : "bg-red-500 hover:bg-red-700"
-            } text-white font-bold py-2 px-4 rounded-lg`}
+            } w-20 text-white font-bold py-2 px-4 rounded-lg`}
           >
             {page === "albums" ? "Create" : "Reset"}
           </button>
@@ -53,9 +56,7 @@ const Header = () => {
             data-collapse-toggle="navbar-search"
             aria-controls="navbar-search"
             aria-expanded="false"
-            class={` ${
-              page === "photos" && "hidden"
-            } md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1`}
+            class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1"
           >
             <svg
               class="w-5 h-5"
@@ -73,11 +74,7 @@ const Header = () => {
             <span class="sr-only">Search</span>
           </button>
           {/* search bar */}
-          <div
-            class={` relative hidden ${
-              page === "photos" ? "block" : "md:block"
-            }`}
-          >
+          <div class="relative md:block hidden">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 class="w-5 h-5 text-gray-500"
@@ -96,10 +93,10 @@ const Header = () => {
             </div>
             <input
               onKeyPress={onSearch}
-              type="text"
+              type="number"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+              placeholder={page === "albums" ? "Search Id" : "Search Album Id"}
             />
           </div>
           {/* small hamburger button */}
@@ -136,11 +133,7 @@ const Header = () => {
           id="navbar-search"
         >
           {/* search bar */}
-          <div
-            class={`relative mt-3 ${
-              page === "photos" ? "hidden" : "md:hidden"
-            }`}
-          >
+          <div class="relative mt-3 md:hidden">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 class="w-5 h-5 text-gray-500"
@@ -158,10 +151,12 @@ const Header = () => {
             </div>
             <input
               onKeyPress={onSearch}
-              type="text"
+              type="number"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+              placeholder={
+                page === "albums" ? "Search Id" : "Search Album Id(0-100)"
+              }
             />
           </div>
         </div>
