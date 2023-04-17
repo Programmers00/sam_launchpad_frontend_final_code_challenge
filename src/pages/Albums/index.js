@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAlbums } from "../../store/actions/albums";
 // useEffect
 import { useEffect } from "react";
+// router navigate
+import { useNavigate } from "react-router-dom";
 /** Albums page */
 const Albums = () => {
   // dispatch
@@ -16,6 +18,8 @@ const Albums = () => {
   const albums = useSelector((state) => state.albums);
   // useSelector => searchId
   const searchId = useSelector((state) => state.search.id);
+  // navigate
+  const navigate = useNavigate();
   // useEffect => fetch ablums when mounting
   useEffect(() => {
     dispatch(fetchAlbums());
@@ -31,7 +35,7 @@ const Albums = () => {
             }
             return album;
           })
-          .map((album) => AlbumCard(album))}
+          .map((album) => AlbumCard(album, navigate))}
       </div>
       <Modal />
       <PopupModal />
