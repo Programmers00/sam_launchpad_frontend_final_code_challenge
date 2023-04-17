@@ -9,6 +9,8 @@ import {
 import { fetchAlbums } from "./albums";
 // album
 import { createAlbum, deleteAlbum } from "./album";
+// search
+import { setSearchId } from "./search";
 export {
   setIsShowModalFalse,
   setIsShowModalTrue,
@@ -17,4 +19,5 @@ export {
   fetchAlbums,
   createAlbum,
   deleteAlbum,
+  setSearchId,
 };
