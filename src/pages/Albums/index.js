@@ -12,8 +12,10 @@ import { useEffect } from "react";
 const Albums = () => {
   // dispatch
   const dispatch = useDispatch();
-  // useSelector
+  // useSelector => albums
   const albums = useSelector((state) => state.albums);
+  // useSelector => searchId
+  const searchId = useSelector((state) => state.search.id);
   // useEffect => fetch ablums when mounting
   useEffect(() => {
     dispatch(fetchAlbums());
@@ -21,7 +23,15 @@ const Albums = () => {
   return (
     <>
       <div class="w-full flex flex-wrap gap-2 flex p-10 justify-center">
-        {albums.map((album) => AlbumCard(album))}
+        {albums
+          // filter => search id
+          .filter((album) => {
+            if (searchId !== 0) {
+              return album.id === searchId;
+            }
+            return album;
+          })
+          .map((album) => AlbumCard(album))}
       </div>
       <Modal />
       <PopupModal />

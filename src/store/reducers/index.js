@@ -6,4 +6,6 @@ import popupModal from "./popupModal";
 import albums from "./albums";
 // album
 import album from "./album";
-export { modal, popupModal, albums, album };
+// search
+import search from "./search";
+export { modal, popupModal, albums, album, search };

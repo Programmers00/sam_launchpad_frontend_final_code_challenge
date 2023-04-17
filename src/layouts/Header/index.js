@@ -5,7 +5,7 @@ import { useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
 // redux actions
-import { setIsShowModalTrue } from "../../store/actions";
+import { setIsShowModalTrue, setSearchId } from "../../store/actions";
 /** Header in layout */
 const Header = () => {
   // handling tailwindcss
@@ -13,7 +13,12 @@ const Header = () => {
   const [isShowNavbar, setIsShowNavbar] = useState(false);
   // dispatch
   const dispatch = useDispatch();
-
+  // function onSearch
+  const onSearch = (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    dispatch(setSearchId(Number(event.target.value)));
+  };
   return (
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -73,6 +78,7 @@ const Header = () => {
               <span class="sr-only">Search icon</span>
             </div>
             <input
+              onKeyPress={onSearch}
               type="text"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -130,6 +136,7 @@ const Header = () => {
               </svg>
             </div>
             <input
+              onKeyPress={onSearch}
               type="text"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
