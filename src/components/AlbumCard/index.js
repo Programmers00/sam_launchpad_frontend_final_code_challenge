@@ -5,13 +5,18 @@ import {
   setIsShowModalTrue,
   setIsShowPopupModalTrue,
 } from "../../store/actions";
+
 /** AlbumCard component */
-const AlbumCard = (album) => {
+const AlbumCard = (album, navigate) => {
   // dispatch
   const dispatch = useDispatch();
   return (
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-      <div class="flex flex-col p-5 items-center">
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-400 hover:border-gray-300">
+      <div
+        // navigate to photos page with id
+        onClick={() => navigate("/photos", { state: { id: album.id } })}
+        class="flex flex-col p-5 items-center "
+      >
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white h-24">
           {album.title}
         </h5>
