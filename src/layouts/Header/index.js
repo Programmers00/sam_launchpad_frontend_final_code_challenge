@@ -43,7 +43,7 @@ const Header = () => {
             onClick={() =>
               page === "albums"
                 ? dispatch(setIsShowModalTrue())
-                : console.log("#reset")
+                : dispatch(fetchPhotos())
             }
             class={`${
               page === "albums"
