@@ -19,3 +19,9 @@ export const SET_PAGE_ALBUMS = "SET_PAGE_ALBUMS";
 export const SET_PAGE_PHOTOS = "SET_PAGE_PHOTOS";
 // photos
 export const SET_PHOTOS = "SET_PHOTOS";
+// loading
+export const SET_IS_SHOW_LOADING_TRUE = "SET_IS_SHOW_LOADING_TRUE";
+export const SET_IS_SHOW_LOADING_FALSE = "SET_IS_SHOW_LOADING_FALSE";
+// toast
+export const SET_IS_SHOW_TOAST_TRUE = "SET_IS_SHOW_TOAST_TRUE";
+export const SET_IS_SHOW_TOAST_FALSE = "SET_IS_SHOW_TOAST_FALSE";

@@ -8,13 +8,22 @@ import {
 // albums
 import { fetchAlbums } from "./albums";
 // album
-import { createAlbum, deleteAlbum } from "./album";
+import {
+  createAlbum,
+  deleteAlbum,
+  setAlbumParamsTitle,
+  setAlbumParamsUserId,
+} from "./album";
 // search
 import { setSearchId } from "./search";
 // page
 import { setPageAlbums, setPagePhotos } from "./page";
 // photos
 import { fetchPhotos } from "./photos";
+// loading
+import { setIsShowLoadingTrue, setIsShowLoadingFalse } from "./loading";
+// toast
+import { setIsShowToastFalse } from "./toast";
 
 export {
   setIsShowModalFalse,
@@ -24,8 +33,13 @@ export {
   fetchAlbums,
   createAlbum,
   deleteAlbum,
+  setAlbumParamsTitle,
+  setAlbumParamsUserId,
   setSearchId,
   setPageAlbums,
   setPagePhotos,
   fetchPhotos,
+  setIsShowLoadingTrue,
+  setIsShowLoadingFalse,
+  setIsShowToastFalse,
 };
