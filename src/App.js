@@ -8,10 +8,15 @@ import Albums from "./pages/Albums";
 import Photos from "./pages/Photos";
 // Loading
 import Loading from "./components/Loading";
+// Toast
+import Toast from "./components/Toast";
 
 function App() {
   return (
     <>
+      {/* Toast */}
+      <Toast />
+      {/* Loading */}
       <Loading />
       <Router>
         <Routes>

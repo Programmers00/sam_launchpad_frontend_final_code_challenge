@@ -1,8 +1,12 @@
 // actionTypes
-import { SET_PHOTOS } from "../actionTypes";
+import {
+  SET_IS_SHOW_LOADING_FALSE,
+  SET_IS_SHOW_LOADING_TRUE,
+  SET_IS_SHOW_TOAST_TRUE,
+  SET_PHOTOS,
+} from "../actionTypes";
 // request(axios)
 import request from "../../utils/request";
-import { setIsShowLoadingFalse, setIsShowLoadingTrue } from "./loading";
 /** action : request */
 // options
 const options = {
@@ -14,7 +18,7 @@ export const fetchPhotos = (albumId) => {
     // request api
     try {
       // show loading
-      dispatch(setIsShowLoadingTrue());
+      dispatch({ type: SET_IS_SHOW_LOADING_TRUE });
       // fetch photos
       const response = await request({
         ...options,
@@ -25,10 +29,17 @@ export const fetchPhotos = (albumId) => {
         // set photos
         dispatch({ type: SET_PHOTOS, payload: response.data });
         // hide loading
-        dispatch(setIsShowLoadingFalse());
+        dispatch({ type: SET_IS_SHOW_LOADING_FALSE });
       }
     } catch (error) {
-      console.error("#Fetch Photos Fail", error.response);
+      // hide loading
+      dispatch({ type: SET_IS_SHOW_LOADING_FALSE });
+      // show toast
+      dispatch({
+        type: SET_IS_SHOW_TOAST_TRUE,
+        payload: { icon: "x", text: "Failed to fetch photos." },
+      });
+      // console.error("#Fetch Photos Fail", error.response);
     }
   };
 };

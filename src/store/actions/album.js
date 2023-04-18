@@ -5,6 +5,7 @@ import {
   RESET_ALBUM_PARAMS,
   SET_IS_SHOW_MODAL_FALSE,
   SET_IS_SHOW_POPUP_MODAL_FALSE,
+  SET_IS_SHOW_TOAST_TRUE,
 } from "../actionTypes";
 // request(axios)
 import request from "../../utils/request";
@@ -45,18 +46,42 @@ export const createAlbum = (data) => {
         ...(data.id && { url: `${options.url}/${data.id}` }),
         data,
       });
-      // edit success => 200, create sucess => 201
+      // condition: edit success => 200, create sucess => 201
       if (response.status === 200 || response.status === 201) {
         // reset album params
         dispatch({ type: RESET_ALBUM_PARAMS });
         // hide modal
         dispatch({ type: SET_IS_SHOW_MODAL_FALSE });
+        // show toast
+        dispatch({
+          type: SET_IS_SHOW_TOAST_TRUE,
+          payload: {
+            icon: "check",
+            // condition: 201 => created, 200 => updated
+            text: `Your album has been ${
+              response.status === 201 ? "created" : "updated"
+            } successfully.`,
+          },
+        });
       }
     } catch (error) {
-      console.error(
-        `#${data.id ? "Edit" : "Create"} Album Fail`,
-        error.response
-      );
+      // reset album params
+      dispatch({ type: RESET_ALBUM_PARAMS });
+      // hide modal
+      dispatch({ type: SET_IS_SHOW_MODAL_FALSE });
+      // show toast
+      dispatch({
+        type: SET_IS_SHOW_TOAST_TRUE,
+        payload: {
+          icon: "warning",
+          // condition: data.id => update, not => create
+          text: `Album ${data.id ? "update" : "creation"} failed.`,
+        },
+      });
+      // console.error(
+      //   `#${data.id ? "Edit" : "Create"} Album Fail`,
+      //   error.response
+      // );
     }
   };
 };
@@ -81,9 +106,29 @@ export const deleteAlbum = (data) => {
         dispatch({ type: RESET_ALBUM_PARAMS });
         // hide popup modal
         dispatch({ type: SET_IS_SHOW_POPUP_MODAL_FALSE });
+        // show toast
+        dispatch({
+          type: SET_IS_SHOW_TOAST_TRUE,
+          payload: {
+            icon: "check",
+            text: "The album has been successfully deleted.",
+          },
+        });
       }
     } catch (error) {
-      console.error("#Delete Album Fail", error.response);
+      // reset album params
+      dispatch({ type: RESET_ALBUM_PARAMS });
+      // hide popup modal
+      dispatch({ type: SET_IS_SHOW_POPUP_MODAL_FALSE });
+      // show toast
+      dispatch({
+        type: SET_IS_SHOW_TOAST_TRUE,
+        payload: {
+          icon: "x",
+          text: "Album deletion failed.",
+        },
+      });
+      // console.error("#Delete Album Fail", error.response);
     }
   };
 };

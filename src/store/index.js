@@ -14,6 +14,7 @@ import {
   page,
   photos,
   loading,
+  toast,
 } from "./reducers";
 // combine reducers
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   page,
   photos,
   loading,
+  toast,
 });
 // middlewares => thunk, logger
 const middlewares = [thunk, logger];

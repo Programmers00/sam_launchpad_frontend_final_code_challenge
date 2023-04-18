@@ -22,6 +22,8 @@ import { setPageAlbums, setPagePhotos } from "./page";
 import { fetchPhotos } from "./photos";
 // loading
 import { setIsShowLoadingTrue, setIsShowLoadingFalse } from "./loading";
+// toast
+import { setIsShowToastFalse } from "./toast";
 
 export {
   setIsShowModalFalse,
@@ -39,4 +41,5 @@ export {
   fetchPhotos,
   setIsShowLoadingTrue,
   setIsShowLoadingFalse,
+  setIsShowToastFalse,
 };

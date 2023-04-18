@@ -14,4 +14,16 @@ import page from "./page";
 import photos from "./photos";
 // loading
 import loading from "./loading";
-export { modal, popupModal, albums, album, search, page, photos, loading };
+// toast
+import toast from "./toast";
+export {
+  modal,
+  popupModal,
+  albums,
+  album,
+  search,
+  page,
+  photos,
+  loading,
+  toast,
+};
