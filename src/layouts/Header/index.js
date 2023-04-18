@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 // useState
 import { useState } from "react";
 // redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // redux actions
-import { setIsShowModalTrue, setSearchId } from "../../store/actions";
+import {
+  fetchPhotos,
+  setIsShowModalTrue,
+  setSearchId,
+} from "../../store/actions";
 /** Header in layout */
 const Header = () => {
   // handling tailwindcss
@@ -13,11 +17,16 @@ const Header = () => {
   const [isShowNavbar, setIsShowNavbar] = useState(false);
   // dispatch
   const dispatch = useDispatch();
+  // selector => page
+  const page = useSelector((state) => state.page.page);
   // function onSearch
   const onSearch = (event) => {
     if (event.key !== "Enter") return;
     event.preventDefault();
-    dispatch(setSearchId(Number(event.target.value)));
+    // conditional function
+    page === "albums"
+      ? dispatch(setSearchId(Number(event.target.value)))
+      : dispatch(fetchPhotos(Number(event.target.value)));
   };
   return (
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -31,10 +40,18 @@ const Header = () => {
         <div class="flex md:order-2 gap-x-2">
           <button
             // show modal
-            onClick={() => dispatch(setIsShowModalTrue())}
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+            onClick={() =>
+              page === "albums"
+                ? dispatch(setIsShowModalTrue())
+                : dispatch(fetchPhotos())
+            }
+            class={`${
+              page === "albums"
+                ? "bg-blue-500 hover:bg-blue-700"
+                : "bg-red-500 hover:bg-red-700"
+            } w-20 text-white font-bold py-2 px-4 rounded-lg`}
           >
-            Create
+            {page === "albums" ? "Create" : "Reset"}
           </button>
           {/* small search button */}
           <button
@@ -60,7 +77,8 @@ const Header = () => {
             </svg>
             <span class="sr-only">Search</span>
           </button>
-          <div class="relative hidden md:block">
+          {/* search bar */}
+          <div class="relative md:block hidden">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 class="w-5 h-5 text-gray-500"
@@ -79,10 +97,10 @@ const Header = () => {
             </div>
             <input
               onKeyPress={onSearch}
-              type="text"
+              type="number"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+              placeholder={page === "albums" ? "Search Id" : "Search Album Id"}
             />
           </div>
           {/* small hamburger button */}
@@ -137,10 +155,12 @@ const Header = () => {
             </div>
             <input
               onKeyPress={onSearch}
-              type="text"
+              type="number"
               id="search-navbar"
               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+              placeholder={
+                page === "albums" ? "Search Id" : "Search Album Id(0-100)"
+              }
             />
           </div>
         </div>
