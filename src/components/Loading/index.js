@@ -8,13 +8,13 @@ const Loading = () => {
   return (
     <div
       role="status"
-      class={`fixed top-0 left-0 right-0 z-50 ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isShowLoading === true ? "" : "hidden"
       } p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex justify-center items-center backdrop-blur-sm`}
     >
       <svg
         aria-hidden="true"
-        class="w-20 h-20 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className="w-20 h-20 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const Loading = () => {
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   );
 };
