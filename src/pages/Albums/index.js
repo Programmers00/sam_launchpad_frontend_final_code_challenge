@@ -5,7 +5,7 @@ import PopupModal from "../../components/PopupModal";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // actions
-import { fetchAlbums } from "../../store/actions/albums";
+import { fetchAlbums, setPageAlbums } from "../../store/actions";
 // useEffect
 import { useEffect } from "react";
 // router navigate
@@ -22,6 +22,9 @@ const Albums = () => {
   const navigate = useNavigate();
   // useEffect => fetch ablums when mounting
   useEffect(() => {
+    // set page albums
+    dispatch(setPageAlbums());
+    // fetch albums
     dispatch(fetchAlbums());
   }, []);
   return (
