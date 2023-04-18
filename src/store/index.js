@@ -13,6 +13,7 @@ import {
   search,
   page,
   photos,
+  loading,
 } from "./reducers";
 // combine reducers
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   search,
   page,
   photos,
+  loading,
 });
 // middlewares => thunk, logger
 const middlewares = [thunk, logger];

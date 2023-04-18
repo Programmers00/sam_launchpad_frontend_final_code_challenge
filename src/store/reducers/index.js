@@ -12,4 +12,6 @@ import search from "./search";
 import page from "./page";
 // photos
 import photos from "./photos";
-export { modal, popupModal, albums, album, search, page, photos };
+// loading
+import loading from "./loading";
+export { modal, popupModal, albums, album, search, page, photos, loading };

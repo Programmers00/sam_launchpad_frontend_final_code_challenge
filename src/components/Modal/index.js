@@ -1,11 +1,12 @@
 // redux
 import { useSelector, useDispatch } from "react-redux";
 // redux actions
-import { setIsShowModalFalse, createAlbum } from "../../store/actions";
 import {
+  setIsShowModalFalse,
+  createAlbum,
   setAlbumParamsTitle,
   setAlbumParamsUserId,
-} from "../../store/actions/album";
+} from "../../store/actions";
 /** Modal component */
 const Modal = () => {
   // redux useDispatch
