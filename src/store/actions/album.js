@@ -10,6 +10,8 @@ import {
 // request(axios)
 import request from "../../utils/request";
 
+import { fetchAlbums } from "./index";
+
 /** action: set album params title */
 export const setAlbumParamsTitle = (title) => {
   return (dispatch) =>
@@ -63,6 +65,8 @@ export const createAlbum = (data) => {
             } successfully.`,
           },
         });
+        // re-fetch albums has changed
+        dispatch(fetchAlbums());
       }
     } catch (error) {
       // reset album params
@@ -115,6 +119,8 @@ export const deleteAlbum = (data) => {
           },
         });
       }
+      // re-fetch albums has changed
+      dispatch(fetchAlbums());
     } catch (error) {
       // reset album params
       dispatch({ type: RESET_ALBUM_PARAMS });
