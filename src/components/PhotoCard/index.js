@@ -6,7 +6,7 @@ const PhotoCard = (photo) => {
       key={photo.id}
       className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col "
     >
-      <div className="flex flex-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2 gap-4 items-center">
+      <div className="flex flex-1 text-sm font-bold tracking-tight text-gray-900 dark:text-white p-2 gap-4 items-center flex-wrap">
         <div className="flex flex-1 justify-center gap-2">
           <h3>ALBUM ID</h3>
           <h3 className="border border-2 border-gray-200 rounded-lg w-12 text-center">
@@ -21,11 +21,11 @@ const PhotoCard = (photo) => {
         </div>
       </div>
       <img src={photo.url} alt="" />
-      <div className="p-5 flex items-center">
-        <h5 className="flex text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+      <div className="p-5 flex flex-row items-center items-center justify-center">
+        <h5 className="flex flex-1 text-lg md:text-sm font-bold tracking-tight text-gray-900 dark:text-white h-28 overflow-y-auto ">
           {photo.title}
         </h5>
-        <img src={photo.thumbnailUrl} alt="" />
+        <img src={photo.thumbnailUrl} alt="" className="flex flex-1" />
       </div>
     </div>
   );
