@@ -6,17 +6,27 @@ import Layout from "./layouts";
 import Albums from "./pages/Albums";
 // Photos page
 import Photos from "./pages/Photos";
+// Loading
+import Loading from "./components/Loading";
+// Toast
+import Toast from "./components/Toast";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/*" element={<Layout />}>
-          <Route exact index element={<Albums />} />
-          <Route exact path="photos" element={<Photos />} />
-        </Route>
-      </Routes>
-    </Router>
+    <>
+      {/* Toast */}
+      <Toast />
+      {/* Loading */}
+      <Loading />
+      <Router>
+        <Routes>
+          <Route exact path="/*" element={<Layout />}>
+            <Route exact index element={<Albums />} />
+            <Route exact path="photos" element={<Photos />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 export default App;
