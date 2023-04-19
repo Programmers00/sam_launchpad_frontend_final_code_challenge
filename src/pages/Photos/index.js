@@ -33,7 +33,7 @@ const Photos = () => {
   }, []);
 
   return (
-    <div class="w-full flex flex-wrap gap-2 flex p-10 justify-center">
+    <div className="w-full flex flex-wrap gap-2 flex p-10 justify-center">
       {photos.map((photo) => PhotoCard(photo))}
     </div>
   );

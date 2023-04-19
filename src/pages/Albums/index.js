@@ -29,7 +29,7 @@ const Albums = () => {
   }, []);
   return (
     <>
-      <div class="w-full flex flex-wrap gap-2 flex p-10 justify-center">
+      <div className="w-full flex flex-wrap gap-2 flex p-10 justify-center">
         {albums
           // filter => search id
           .filter((album) => {
@@ -38,7 +38,7 @@ const Albums = () => {
             }
             return album;
           })
-          .map((album) => AlbumCard(album, navigate))}
+          .map((album) => AlbumCard({ album, navigate, dispatch }))}
       </div>
       <Modal />
       <PopupModal />
