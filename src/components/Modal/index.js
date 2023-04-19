@@ -24,10 +24,26 @@ const Modal = () => {
   // redux useSelector => params for create or edit album
   const params = useSelector((state) => state.album);
 
-  // function onSubmit: create albums
-  const onSubmit = (event) => {
+  /** function onClickSave: create album or update album */
+  const onClickSave = (event) => {
     event.preventDefault();
+    // create album or update album
     dispatch(createAlbum(params));
+  };
+  /** function onClickCancel: hide modal */
+  const onClickCancel = () => {
+    // hide modal
+    dispatch(setIsShowModalFalse());
+  };
+  /** function onChangeTitle: change album title params */
+  const onChangeTitle = (event) => {
+    // change album title params
+    dispatch(setAlbumParamsTitle(event.target.value));
+  };
+  /** function onChangeUserId: change album userId params */
+  const onChangeUserId = (event) => {
+    // change album userId params
+    dispatch(setAlbumParamsUserId(event.target.value));
   };
   return (
     <div
@@ -41,7 +57,7 @@ const Modal = () => {
       <div className="relative w-full max-w-md max-h-full">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div className="px-6 py-6 lg:px-8">
-            <form className="space-y-6" onSubmit={onSubmit}>
+            <form className="space-y-6" onSubmit={onClickSave}>
               <div>
                 <label
                   htmlFor="title"
@@ -57,9 +73,7 @@ const Modal = () => {
                   placeholder="title"
                   required
                   value={title}
-                  onChange={(event) =>
-                    dispatch(setAlbumParamsTitle(event.target.value))
-                  }
+                  onChange={onChangeTitle}
                 />
               </div>
               <div>
@@ -77,28 +91,27 @@ const Modal = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                   value={userId}
-                  onChange={(event) =>
-                    dispatch(setAlbumParamsUserId(event.target.value))
-                  }
+                  onChange={onChangeUserId}
                 />
               </div>
               <div className="flex gap-x-1 justify-center">
-                {/* Create button */}
+                {/* Save button */}
                 <button
+                  // onSubmit in form
                   type="submit"
                   className={`text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-4 focus:outline-none ${
+                    // condition: from Create button => blue, from Edit button => green
                     isCreateButton === true
                       ? "bg-blue-700 hover:bg-blue-800  focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       : "bg-green-700 hover:bg-green-800  focus:ring-green-300  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                   }`}
                 >
-                  {/* {isCreateButton === true ? "Create" : "Save"} */}
                   Save
                 </button>
                 {/* Cancel button */}
                 <button
                   type="button"
-                  onClick={() => dispatch(setIsShowModalFalse())}
+                  onClick={onClickCancel}
                   className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                 >
                   Cancel

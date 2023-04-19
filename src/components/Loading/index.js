@@ -12,6 +12,7 @@ const Loading = () => {
         isShowLoading === true ? "" : "hidden"
       } p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex justify-center items-center backdrop-blur-sm`}
     >
+      {/* Spinner icon */}
       <svg
         aria-hidden="true"
         className="w-20 h-20 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -28,7 +29,6 @@ const Loading = () => {
           fill="currentFill"
         />
       </svg>
-      <span className="sr-only">Loading...</span>
     </div>
   );
 };
