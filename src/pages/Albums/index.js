@@ -5,9 +5,11 @@ import PopupModal from "../../components/PopupModal";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // actions
-import { fetchAlbums } from "../../store/actions/albums";
+import { fetchAlbums, setPageAlbums } from "../../store/actions";
 // useEffect
 import { useEffect } from "react";
+// router navigate
+import { useNavigate } from "react-router-dom";
 /** Albums page */
 const Albums = () => {
   // dispatch
@@ -16,8 +18,13 @@ const Albums = () => {
   const albums = useSelector((state) => state.albums);
   // useSelector => searchId
   const searchId = useSelector((state) => state.search.id);
+  // navigate
+  const navigate = useNavigate();
   // useEffect => fetch ablums when mounting
   useEffect(() => {
+    // set page albums
+    dispatch(setPageAlbums());
+    // fetch albums
     dispatch(fetchAlbums());
   }, []);
   return (
@@ -31,7 +38,7 @@ const Albums = () => {
             }
             return album;
           })
-          .map((album) => AlbumCard(album))}
+          .map((album) => AlbumCard(album, navigate))}
       </div>
       <Modal />
       <PopupModal />
