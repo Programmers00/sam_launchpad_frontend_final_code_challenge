@@ -19,14 +19,35 @@ const Header = () => {
   const dispatch = useDispatch();
   // selector => page
   const page = useSelector((state) => state.page.page);
-  // function onSearch
+
+  /** function onSearch: search id in Alums page, fetch photos in Photos page */
   const onSearch = (event) => {
     if (event.key !== "Enter") return;
     event.preventDefault();
-    // conditional function
+    // condition: albums page, photos page
     page === "albums"
       ? dispatch(setSearchId(Number(event.target.value)))
       : dispatch(fetchPhotos(Number(event.target.value)));
+  };
+  /** function onClickButton: Create button in Albums page*/
+  const onClickCreate = () => {
+    // show modal
+    dispatch(setIsShowModalTrue());
+  };
+  /** function onClickReset: Reset button in Photos page*/
+  const onClickReset = () => {
+    // fetch photos
+    dispatch(fetchPhotos());
+  };
+  /** function onClickHamburgeToggle: hide, show navbar (md) */
+  const onClickHamburgerToggle = () => {
+    // hide, show navbar
+    setIsShowNavbar((prev) => !prev);
+  };
+  /** function onClickSearchToggle: hide, show searchBar (md) */
+  const onClickSearchToggle = () => {
+    // hide, show searchBar
+    setIsShowSearchbar((prev) => !prev);
   };
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -39,12 +60,7 @@ const Header = () => {
         </a>
         <div className="flex md:order-2 gap-x-2">
           <button
-            // show modal
-            onClick={() =>
-              page === "albums"
-                ? dispatch(setIsShowModalTrue())
-                : dispatch(fetchPhotos())
-            }
+            onClick={page === "albums" ? onClickCreate : onClickReset}
             className={`${
               page === "albums"
                 ? "bg-blue-500 hover:bg-blue-700"
@@ -53,15 +69,16 @@ const Header = () => {
           >
             {page === "albums" ? "Create" : "Reset"}
           </button>
-          {/* small search button */}
+          {/* search icon button - md */}
           <button
-            onClick={() => setIsShowSearchbar((prev) => !prev)} // hide, show navbar
+            onClick={onClickSearchToggle}
             type="button"
             data-collapse-toggle="navbar-search"
             aria-controls="navbar-search"
             aria-expanded="false"
             className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1"
           >
+            {/* search icon */}
             <svg
               className="w-5 h-5"
               aria-hidden="true"
@@ -75,11 +92,11 @@ const Header = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="sr-only">Search</span>
           </button>
           {/* search bar */}
           <div className="relative md:block hidden">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              {/* search icon */}
               <svg
                 className="w-5 h-5 text-gray-500"
                 aria-hidden="true"
@@ -93,7 +110,6 @@ const Header = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <span className="sr-only">Search icon</span>
             </div>
             <input
               onKeyPress={onSearch}
@@ -103,16 +119,16 @@ const Header = () => {
               placeholder={page === "albums" ? "Search Id" : "Search Album Id"}
             />
           </div>
-          {/* small hamburger button */}
+          {/* hamburger icon button (md)*/}
           <button
-            onClick={() => setIsShowNavbar((prev) => !prev)} // hide, show navbar
+            onClick={onClickHamburgerToggle}
             data-collapse-toggle="navbar-search"
             type="button"
             className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-search"
             aria-expanded="false"
           >
-            <span className="sr-only">Open menu</span>
+            {/* hamburger icon */}
             <svg
               className="w-6 h-6"
               aria-hidden="true"
